@@ -1,5 +1,5 @@
 <template>
-        <CarouselCard :card_fields="card_fields" v-if="isCurrent==card_fields.id">
+        <CarouselCard :value="isCurrent" :card_fields="card_fields" v-if="isCurrent==card_fields.id">
             <template v-slot:btn>
                 <ButtonUI @click="$router.push('/deals')" >
                         {{card_fields.text_btn}}
@@ -45,4 +45,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+div{
+    width:100%;
+}
 </style>

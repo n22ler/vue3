@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div class="card__container" :style="{'margin-left': '-' + (430*(currentSlideIndex-2)) + 'px', 'min-width':(430*carousel_data.length)+'px'}">
+        <div class="card__container" :style="{'min-width':(430*carousel_data.length)+'px'}">
             <CarouselItem
                 v-for="card in slideArray"
                 :key="card.id"
@@ -29,7 +29,7 @@ export default defineComponent({
     data(){
         return{
             currentSlideIndex: 2,
-            slideArray:this.carousel_data
+            slideArray:this.carousel_data,
         }
     },
     components:{
@@ -48,18 +48,23 @@ export default defineComponent({
     },
     methods:{
         prevSlide():void{ //сабж
-            if(this.currentSlideIndex>0){
-                if(this.currentSlideIndex<=2){
-                this.currentSlideIndex = 8
-                }
+            const firstItem = this.slideArray.pop()
+                this.slideArray.unshift(firstItem as Card)
+            if(this.currentSlideIndex==1){
+                this.currentSlideIndex=8
+            } else{
                 this.currentSlideIndex--
             }
         },
         nextSlide():void{ //сабж
-            if(this.currentSlideIndex>this.carousel_data.length-2){
-                this.currentSlideIndex = 1
+            const firstItem = this.slideArray.shift()
+            this.slideArray.push(firstItem as Card)
+            if(this.currentSlideIndex==8){
+                this.currentSlideIndex=1
+            } else{
+                this.currentSlideIndex++
             }
-            this.currentSlideIndex++
+
         },
     },
     mounted() {
@@ -87,7 +92,7 @@ export default defineComponent({
     align-items: stretch;
     position: relative;
     padding-bottom: 50px;
-    transition: all ease 0.5s
+    transition: ease 0.5s;
 }
 .btn__group{
     margin: auto;

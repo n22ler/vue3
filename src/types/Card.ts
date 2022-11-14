@@ -5,6 +5,7 @@ interface Card {
     field2:string,
     field3:string,
     text_btn: string
+    image: string
 }
 
 export default Card

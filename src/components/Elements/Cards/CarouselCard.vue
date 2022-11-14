@@ -32,6 +32,7 @@
                 </div>
                 {{card_fields.field3}}
             </span>
+            <div v-html="card_fields.image"></div>
         </div>
         <div class="card__btn">
             <slot name="btn"></slot>
@@ -60,6 +61,7 @@ export default defineComponent({
 
 <style scoped>
 .card__card{
+    position: relative;
     background: #FFFFFF;
     box-shadow: 3px 4px 15px -10px rgba(0, 110, 189, 0.2), 0px 1px 30px -3px rgba(0, 78, 135, 0.12);
     border-radius: 20px;
@@ -70,16 +72,10 @@ export default defineComponent({
     flex-direction: column;
     justify-content: space-between;
     padding:48px 0;
-
 }
-.card__card:nth-child(1)>.card__content{
-    background-image: url('@/static/images/bgd-xls.svg');
-}
-.card__card:nth-child(2)>.card__content{
-    background-image: url('@/static/images/bgd-gaz.svg');
-}
-.card__card:nth-child(3)>.card__content{
-    background-image: url('@/static/images/bgd-web.svg');
+.card__content>div{
+    position: absolute;
+    right: 0;
 }
 .card__btn{
     align-items: flex-end;
