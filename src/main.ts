@@ -17,4 +17,8 @@ Elements.forEach(component=>{ //зарегистрировали Элемент�
 })
 
 
-app.use(store).use(router).mount('#app')
+
+app
+    .use(store)
+    .use(router)
+    .mount('#app')
